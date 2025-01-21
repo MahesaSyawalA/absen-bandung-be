@@ -18,12 +18,11 @@ router.post("/verify-otp", userController.verifyOtp);
 
 // Endpoint untuk reset password
 router.post("/reset-password", userController.resetPassword);
-// Endpoint untuk CRUD
+/// Endpoint untuk CRUD user
 router.get("/profile", verifyToken, userController.getUserByUsername);
-router.get("/", userController.getAllUser);
-router.post("/",  userController.createUser);
-router.put("/:username", userController.updateUser);
-router.put("/update/:username", userController.updatePassword);
+router.get("/", verifyToken, userController.getAllUser);
+router.post("/", verifyToken, userController.createUser);
+router.put("/:username", verifyToken, userController.updateUser);
 router.delete("/", verifyToken, userController.deleteUser);
 
 module.exports = router;
