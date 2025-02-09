@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
         const { date, status, user_id, school_id, photo_path, latitude, longtitude } = req.body;
         
         // Validasi input
-        if (!date || !status || !user_id || !school_id || !photo_path || latitude || longtitude ) {
+        if (!date || !status || !user_id || !school_id || !photo_path || !latitude || !longtitude ) {
             return response(400, "Semua field harus diisi", "ERROR", res);
         }
 
