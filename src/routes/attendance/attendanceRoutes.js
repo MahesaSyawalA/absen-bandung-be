@@ -17,14 +17,14 @@ router.get('/', async (req, res) => {
 // Create attendance
 router.post('/', async (req, res) => {
     try {
-        const { date, status, user_id, school_id } = req.body;
+        const { date, status, user_id, school_id, photo_path, latitude, longtitude } = req.body;
         
         // Validasi input
-        if (!date || !status || !user_id || !school_id) {
+        if (!date || !status || !user_id || !school_id || !photo_path || latitude || longtitude ) {
             return response(400, "Semua field harus diisi", "ERROR", res);
         }
 
-        const newAttendance = await Attendance.add(date, status, user_id, school_id);
+        const newAttendance = await Attendance.add(date, status, user_id, school_id, photo_path, latitude, longtitude);
         response(201, newAttendance, "Attendance berhasil ditambahkan", res);
     } catch (error) {
         response(500, error.message, "ERROR", res);

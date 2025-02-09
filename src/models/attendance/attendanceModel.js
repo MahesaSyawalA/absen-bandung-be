@@ -1,11 +1,11 @@
 const client = require("../../db/connection");
 
 const Attendance = {
-    add: async (date, status, user_id) => {
+    add: async (date, status, user_id, photo_path, latitude, longtitude) => {
         try {
             const result = await client.query(
-                'INSERT INTO attendance (date, status, user_id) VALUES ($1, $2, $3) RETURNING *',
-                [date, status, user_id]
+                'INSERT INTO attendance (date, status, user_id, photo_path, latitude, longtitude) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+                [date, status, user_id, photo_path, latitude, longtitude]
             );
             return result.rows[0];
         } catch (error) {
